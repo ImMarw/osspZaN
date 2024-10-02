@@ -1,10 +1,11 @@
 <?php
-include 'includes/db.php';
+include '../includes/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $description = $_POST['description'];
     $date = $_POST['date'];
+    $image = $_FILES['image'];
 
     // Nahrání obrázku
     $target_dir = "uploads/";
@@ -63,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="date" id="date" name="date" required>
 
                 <label for="image">Obrázek</label>
-                <input type="file" id="image" name="image">
+                <input type="file" id="image" name="image" accept="image/*">
 
                 <input type="submit" value="Přidat">
             </form>

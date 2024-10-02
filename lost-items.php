@@ -1,15 +1,18 @@
 <?php
-include 'includes/db.php';
+include '../includes/db.php';
+include '../includes/functions.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>Nalezené věci</title>
 </head>
+
 <body>
     <div class="navbar">
         <a href="index.php">Home</a>
@@ -24,17 +27,25 @@ include 'includes/db.php';
 
         <div class="items">
             <?php
-            $sql = "SELECT * FROM items";
-            $result = $conn->query($sql);
-
+            $sql = "SELECT `name`, `description`, `found_date`, `image` FROM items";
+            try {
+                $result = $conn->query($sql);
+            } catch (mysqli_sql_exception $e) {
+                echo "<script>alert('This is a JavaScript alert!');</script><p>Something went wrong</p>";
+            }
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
+                    $name = $row['name'];
+                    $description = $row['description'];
+                    $found_date = $row['found_date'];
+                    $image = $row['image'];
+
                     echo "<div class='item'>";
-                    echo "<h3>" . htmlspecialchars($row['name']) . "</h3>";
-                    echo "<p>" . htmlspecialchars($row['description']) . "</p>";
-                    echo "<p>Nalezeno: " . htmlspecialchars($row['found_date']) . "</p>";
-                    if ($row['image']) {
-                        echo "<img src='uploads/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['name']) . "' style='width:200px;height:200px;'/>";
+                    echo "<h3>" . $name . "</h3>";
+                    echo "<p>" . $description . "</p>";
+                    echo "<p>Nalezeno: " . formatTimestamp($found_date) . "</p>";
+                    if ($image) {
+                        echo "<img src='uploads/" . $image . "' alt='" . $name . "' style='width:200px;height:200px;'/>";
                     }
                     echo "</div>";
                 }
@@ -47,4 +58,5 @@ include 'includes/db.php';
         </div>
     </div>
 </body>
+
 </html>
