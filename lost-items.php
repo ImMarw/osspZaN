@@ -1,8 +1,3 @@
-<?php
-include '../includes/db.php';
-include '../includes/functions.php';
-?>
-
 <!DOCTYPE html>
 <html lang="cs">
 
@@ -26,6 +21,17 @@ include '../includes/functions.php';
                 <a href="add-item.php">Přidat nalezený předmět</a>
         <div class="items">
             <?php
+            try {
+                include './includes/db.php';
+                include './includes/functions.php';
+                if($db){
+                    echo "JA";
+                }else{
+                    echo "NAh";
+                }
+            } catch (Exception $e) {
+                echo "something went wrong while routing" . $e->getMessage();
+            }
             $sql = "SELECT `name`, `description`, `found_date`, `image` FROM items";
             try {
                 $result = $conn->query($sql);
