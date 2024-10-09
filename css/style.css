@@ -151,7 +151,7 @@ input[type="submit"]:hover {
 .add-item {
     display: inline-block;
     padding: 12px 20px;
-    background-color: #ff0000;
+    background-color: purple;
     color: #ffffff;
     text-decoration: none;
     font-weight: bold;
@@ -162,7 +162,7 @@ input[type="submit"]:hover {
 }
 
 .add-item:hover {
-    background-color: #e60000;
+    background-color: white;
 }
 
 .add-item-button {
