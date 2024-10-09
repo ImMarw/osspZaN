@@ -12,5 +12,5 @@ try {
     $conn = new mysqli($servername, $username, $password, $dbname);
     echo "Connected successfully";
 } catch (mysqli_sql_exception $e) {
-    echo "Connection failed: " . $e->getMessage();
+    echo "[1] Connection failed: " . $e->getMessage();
 }
