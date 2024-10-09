@@ -1,21 +1,24 @@
 <?php
-include 'includes/db.php';
+include '../includes/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $signed = false;
 
-    $sql = "SELECT * FROM users WHERE username = ?";
+    $sql = "SELECT `username`, `password` FROM users WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
+    echo $result;
+
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        if (password_verify($password, $user['password'])) {
+        if ($password == "") {
             echo "Přihlášení úspěšné!";
-            // Zde můžeš nastavit session nebo přesměrování na jinou stránku
+            $signed = true;
         } else {
             echo "Špatné heslo!";
         }
@@ -25,17 +28,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $stmt->close();
     $conn->close();
+    if ($signed) {
+        header("Location: index.php");
+    } else {
+        header("Location: signin.php");
+    }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>Přihlášení</title>
 </head>
+
 <body>
     <div class="navbar">
         <a href="index.php">Home</a>
@@ -47,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container">
         <h2>Přihlášení</h2>
         <div class="form-container">
-            <form action="signin.php" method="post">
+            <form action="" method="post">
                 <label for="username">Uživatelské jméno</label>
                 <input type="text" id="username" name="username" required>
 
@@ -59,4 +69,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 </body>
+
 </html>
