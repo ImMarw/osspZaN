@@ -1,59 +1,49 @@
 <?php
-function makeSafe($data): string
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
+include 'includes/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (!empty($_FILES['image']['tmp_name'])) {
-        try {
-            include '../includes/db.php';
-            $name = makeSafe($_POST['name']);
-            $description = makeSafe($_POST['description']);
-            $date = $_POST['date'];
-            $image = $_FILES['image']['tmp_name'];
-            
-            $imageContent = file_get_contents($image);
-            
-            $sql = "INSERT INTO items (`name`, `description`, `found_date`, `image`) VALUES (?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            
-            if ($stmt) {
-                $stmt->bind_param("sssb", $name, $description, $date, $imageContent);
+    $name = $_POST['name'];
+    $description = $_POST['description'];
+    $date = $_POST['date'];
 
-                if ($stmt->execute()) {
-                    echo "Image uploaded successfully.";
-                } else {
-                    echo "Error: " . $stmt->error;
-                }
+    // Nahrání obrázku
+    $target_dir = "uploads/";
+    $image = basename($_FILES["image"]["name"]);
+    $target_file = $target_dir . $image;
 
-                $stmt->close();
-            } else {
-                echo "Error: " . $conn->error;
-            }
-            $conn->close();
-        } catch (Exception $e) {
-            echo "An error occurred: " . $e->getMessage() . "<br>" . $e->getTrace();
-        }
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+        echo "Obrázek " . htmlspecialchars($image) . " byl úspěšně nahrán.";
     } else {
-        echo "No image selected.";
+        echo "Chyba při nahrávání obrázku.";
     }
+
+    // Uložení do databáze
+    $sql = "INSERT INTO items (name, description, found_date, image) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssss", $name, $description, $date, $image);
+
+    if ($stmt->execute()) {
+        echo "Předmět byl úspěšně přidán!";
+        // Přesměrování po úspěšném přidání položky
+        header('Location: lost-items.php');
+        exit();
+    } else {
+        echo "Chyba: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $conn->close();
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="cs">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Přidat nalezený předmět</title>
 </head>
-
 <body>
     <div class="navbar">
         <a href="index.php">Home</a>
@@ -71,17 +61,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <label for="description">Popis</label>
                 <input type="text" id="description" name="description" required>
-
                 <label for="date">Datum nálezu</label>
                 <input type="date" id="date" name="date" required>
 
                 <label for="image">Obrázek</label>
-                <input type="file" id="image" name="image" accept="image/*">
+                <input type="file" id="image" name="image">
 
-                <input type="submit" name="add-item" value="Přidat">
+                <input type="submit" value="Přidat">
             </form>
         </div>
     </div>
-</body>
-
+    </body>
 </html>
