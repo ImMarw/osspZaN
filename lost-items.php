@@ -18,8 +18,9 @@
 
     <div class="container">
         <h2>Nalezené věci</h2>
-        <a href="add-item.php">Přidat nalezený předmět</a>
-
+            <div class="add-item-button">
+                <a href="add-item.php">Přidat nalezený předmět</a>
+            </div>
         <div class="items">
             <?php
             try {
