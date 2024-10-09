@@ -1,14 +1,16 @@
 <?php
-$servername = "localhost"; // nebo 127.0.0.1
-$username = "root"; // uživatelské jméno MySQL
-$password = "root"; // heslo k MySQL
-$dbname = "osspZaNtest"; // název databáze
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-// Vytvoření připojení
-$conn = new mysqli($servername, $username, $password, $dbname);
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "osspZaNtest";
 
-// Kontrola připojení
-if ($conn->connect_error) {
-    die("Připojení selhalo: " . $conn->connect_error);
+global $conn;
+
+try {
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    echo "Connected successfully";
+} catch (mysqli_sql_exception $e) {
+    echo "[1] Connection failed: " . $e->getMessage();
 }
-?>
