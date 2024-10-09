@@ -23,9 +23,7 @@ include '../includes/functions.php';
 
     <div class="container">
         <h2>Nalezené věci</h2>
-            <div class="add-item-button">
                 <a href="add-item.php">Přidat nalezený předmět</a>
-            </div>
         <div class="items">
             <?php
             $sql = "SELECT `name`, `description`, `found_date`, `image` FROM items";
