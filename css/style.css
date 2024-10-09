@@ -165,6 +165,10 @@ input[type="submit"]:hover {
     background-color: #e60000;
 }
 
+.add-item-button {
+    color: white;
+}
+
 /* Responsivita */
 @media (max-width: 768px) {
     .item {
