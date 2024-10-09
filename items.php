@@ -17,14 +17,7 @@ $items = $stmt->fetchAll();
 </head>
 
 <body>
-    <header>
-        <h1>Nalezené Předměty</h1>
-    </header>
-    <nav>
-        <a href="index.php">Domů</a>
-        <a href="items.php">Nalezené Předměty</a>
-        <a href="login.php">Administrace</a>
-    </nav>
+    <?php include 'navbar.php'; ?>
     <div class="container">
         <?php if (count($items) > 0): ?>
             <?php foreach ($items as $item): ?>
@@ -44,6 +37,6 @@ $items = $stmt->fetchAll();
             <p>Žádné nalezené předměty zatím nejsou evidovány.</p>
         <?php endif; ?>
     </div>
+    <?php $currentPage = 'index'; ?>
 </body>
-
 </html>

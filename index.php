@@ -12,20 +12,12 @@
 </head>
 
 <body>
-    <header>
-        <h1>Vítejte na stránkách OsspZaN</h1>
-        <p>Najděte ztracené předměty ve vaší škole</p>
-    </header>
-    <nav>
-        <a href="index.php">Domů</a>
-        <a href="items.php">Nalezené Předměty</a>
-        <a href="login.php">Administrace</a>
-    </nav>
+    <?php include 'navbar.php'; ?>
     <div class="container">
         <h2>Jak to funguje?</h2>
         <p>Pokud jste něco ztratili, můžete se podívat na seznam nalezených předmětů. Administrátoři mohou přidávat nové
             položky do databáze.</p>
     </div>
+    <?php $currentPage = 'index'; ?>
 </body>
-
 </html>

@@ -34,14 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <header>
-        <h1>Přihlášení Administrátora</h1>
-    </header>
-    <nav>
-        <a href="index.php">Domů</a>
-        <a href="items.php">Nalezené Předměty</a>
-        <a href="login.php">Administrace</a>
-    </nav>
+    <?php include 'navbar.php'; ?>
     <div class="container">
         <?php if ($error): ?>
             <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
@@ -56,6 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="submit" value="Přihlásit se">
         </form>
     </div>
+    <?php $currentPage = 'index'; ?>
 </body>
-
 </html>
