@@ -54,13 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <header>
-        <h1>Přidat Nový Předmět</h1>
+        <?php include 'navbar.php'; ?>
+        <h1 style="margin-left: 10px;">Přidat Nový Předmět</h1>
     </header>
-    <nav>
-        <a href="index.php">Domů</a>
-        <a href="items.php">Nalezené Předměty</a>
-        <a href="logout.php">Odhlásit se</a>
-    </nav>
     <div class="container">
         <?php if ($error): ?>
             <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
@@ -84,4 +80,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
     </div>
 </body>
+
 </html>

@@ -39,4 +39,5 @@ $items = $stmt->fetchAll();
     </div>
     <?php $currentPage = 'index'; ?>
 </body>
+
 </html>

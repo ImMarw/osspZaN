@@ -20,4 +20,5 @@
     </div>
     <?php $currentPage = 'index'; ?>
 </body>
+
 </html>
