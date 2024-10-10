@@ -19,7 +19,12 @@ CREATE TABLE IF NOT EXISTS admins (
 INSERT INTO
     admins (username, password)
 VALUES
+    ('admin', 'osspZaNadmin');
+
+INSERT INTO
+    admins (username, password)
+VALUES
     (
-        'admin',
-        '$2y$10$e0NRNkp5YIih3B7/FZB4UOS1Bg9vVjAiQxS.XdSWbngBV0m5Pja1W'
+        'admin1',
+        '$2y$10$SRVN2rVCMUFAqRpIMK4avushxDVDnKaATFubxzyXj0d2duyUGQLsO'
     );
