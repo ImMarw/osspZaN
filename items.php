@@ -1,8 +1,6 @@
 <?php
-// items.php
 require 'config.php';
 
-// Fetch all items
 $stmt = $pdo->query('SELECT * FROM items ORDER BY timestamp DESC');
 $items = $stmt->fetchAll();
 ?>

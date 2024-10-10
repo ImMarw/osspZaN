@@ -1,9 +1,7 @@
 <?php
-// add_item.php
 session_start();
 require 'config.php';
 
-// Ověření, zda je uživatel přihlášen jako administrátor
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: login.php');
     exit;
@@ -31,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($error)) {
-        // Vložení do databáze
         $stmt = $pdo->prepare('INSERT INTO items (name, description, photo) VALUES (?, ?, ?)');
         try {
             $stmt->execute([$name, $description, $photo]);

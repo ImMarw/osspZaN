@@ -8,99 +8,99 @@ body {
 
 /* Navbar styling */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fafafa;
-    padding: 10px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    height: 60px; /* Nastavení pevné výšky navbaru */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fafafa;
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 60px; /* Nastavení pevné výšky navbaru */
 }
 
 .logo img {
-    max-height: 50px; /* Logo nebude vyšší než 50px */
-    width: auto;      /* Zachování poměru stran loga */
+  max-height: 50px; /* Logo nebude vyšší než 50px */
+  width: auto; /* Zachování poměru stran loga */
 }
 
 .nav-links {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .nav-links a {
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    padding: 10px 15px;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease;
-    border-radius: 5px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  padding: 10px 15px;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
 }
 
 .nav-links a:hover {
-    background-color: #dfdfdf;
-    color: #000000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #dfdfdf;
+  color: #000000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Responzivita pro navbar */
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .nav-links {
-        width: 100%;
-        justify-content: space-between;
-    }
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+  }
 
-    .nav-links a {
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding: 10px 0;
-        margin: 5px 0;
-    }
+  .nav-links a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    margin: 5px 0;
+  }
 
-    .logo img {
-        max-height: 40px; /* Menší logo pro menší obrazovky */
-    }
+  .logo img {
+    max-height: 40px; /* Menší logo pro menší obrazovky */
+  }
 }
 
 /* Hide the navigation links on small screens */
 
 .icon {
-    display: none;
-    font-size: 30px;
-    color: white;
+  display: none;
+  font-size: 30px;
+  color: white;
 }
 
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        text-align: center;
-    }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
 
-    .nav-links a {
-        padding: 10px;
-        background-color: #4caf50;
-        border-bottom: 1px solid #ddd;
-    }
+  .nav-links a {
+    padding: 10px;
+    background-color: #4caf50;
+    border-bottom: 1px solid #ddd;
+  }
 
-    .icon {
-        display: block;
-        cursor: pointer;
-    }
+  .icon {
+    display: block;
+    cursor: pointer;
+  }
 }
 
 .show-nav {
-    display: flex !important;
+  display: flex !important;
 }
 
 .nav-links a.active {
-    background-color: #388e3c;
+  background-color: #388e3c;
 }
 
 .container {
