@@ -105,7 +105,7 @@ body {
 
 .container {
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 2.5vw 2vw;
   padding: 20px;
   background-color: white;
   border-radius: 20px;
@@ -145,6 +145,10 @@ p {
 small {
   font-size: 0.85rem;
   color: #777;
+}
+
+form {
+  padding: 2vw;
 }
 
 button,
@@ -211,7 +215,6 @@ footer p {
 
   .container {
     padding: 15px;
-    margin: 20px auto;
   }
 
   .item {
