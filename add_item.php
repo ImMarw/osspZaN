@@ -1,9 +1,7 @@
 <?php
-// add_item.php
 session_start();
 require 'config.php';
 
-// Ověření, zda je uživatel přihlášen jako administrátor
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: login.php');
     exit;
@@ -31,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($error)) {
-        // Vložení do databáze
         $stmt = $pdo->prepare('INSERT INTO items (name, description, photo) VALUES (?, ?, ?)');
         try {
             $stmt->execute([$name, $description, $photo]);
@@ -45,12 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="cs">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OsspZaN - Ztráty a Nálezy</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+<?php include 'head.php'; ?>
 
 <body>
     <header>
