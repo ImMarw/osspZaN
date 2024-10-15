@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'config.php';
 
 $stmt = $pdo->query('SELECT * FROM items ORDER BY timestamp DESC');
@@ -23,7 +24,16 @@ $items = $stmt->fetchAll();
                         <img src="image.php?id=<?php echo $item['id']; ?>"
                             alt="Foto <?php echo htmlspecialchars($item['name']); ?>">
                     <?php endif; ?>
-                    <small>Datum nalezení: <?php echo htmlspecialchars($item['timestamp']); ?></small>
+                    <div class="collumn">
+                        <small>Datum nalezení: <?php echo htmlspecialchars($item['timestamp']); ?></small>
+                        
+                    </div>
+                    <?php if ($_SESSION['admin_logged_in'] == true && isset($_SESSION['admin_username'])): ?>
+                        <form action="delete.php" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $item['id']; ?>">
+                            <input type="submit" value="Smazat">
+                        </form>
+                    <?php endif; ?>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
