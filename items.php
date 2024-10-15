@@ -26,14 +26,30 @@ $items = $stmt->fetchAll();
                     <?php endif; ?>
                     <div class="collumn">
                         <small>Datum nalezení: <?php echo htmlspecialchars($item['timestamp']); ?></small>
-                        
+                        <small>Vyzvednuto: <?php
+                        if ($item['claimed_timestamp'] == '0000-00-00 00:00:00') {
+                            echo 'NE';
+                        } else {
+                            echo 'ANO';
+                        }
+                        ?></small>
                     </div>
-                    <?php if ($_SESSION['admin_logged_in'] == true && isset($_SESSION['admin_username'])): ?>
-                        <form action="delete.php" method="POST">
-                            <input type="hidden" name="id" value="<?php echo $item['id']; ?>">
-                            <input type="submit" value="Smazat">
-                        </form>
-                    <?php endif; ?>
+                    <div class="collumn">
+                        <?php
+                        if ($item['claimed_timestamp'] == '0000-00-00 00:00:00'): ?>
+                            <form action="claim.php" method="post">
+                                <input type="hidden" name="id" value="<?php echo $item['id']; ?>">
+                                <input type="submit" value="Vyzvednul jsem si">
+                            </form>
+                        <?php endif;
+                        ?>
+                        <?php if ($_SESSION['admin_logged_in'] == true && isset($_SESSION['admin_username'])): ?>
+                            <form action="delete.php" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $item['id']; ?>">
+                                <input type="submit" value="Smazat">
+                            </form>
+                        <?php endif; ?>
+                    </div>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>

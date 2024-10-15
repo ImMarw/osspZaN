@@ -20,6 +20,11 @@ body {
   width: auto;
 }
 
+.collumn {
+  display: flex;
+  flex-direction: column;
+}
+
 #nav-button {
   display: none;
 }
